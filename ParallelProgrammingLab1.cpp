@@ -1,4 +1,4 @@
-﻿// @М.Ю.Лихачев 1 к.маг. 13 гр.
+﻿// @ М.Ю.Лихачев 1к.маг.13гр.
 //
 // Написать программу с использованием технологии OpenMP, которая решает поставленную задачу.
 // При этом вычислить максимальное, минимальное и среднее время выполнения программы. 
@@ -16,43 +16,50 @@
 #include <iostream>
 #include <vector>
 #include <omp.h>
-#include "Random.h"
+
 #include "Display.h"
-#include "SeqentialCalculator.h" 
+#include "Test.h" 
 
 using namespace std;
 
 const double minValue = 0.0;
 const double maxValue = 360.0;
+const int countVariants = 7;
 
 int main()
 {
     int size = 0;
     cout << "Enter arrays size:\n";
     cin >> size;
+    cout << "Arrays size: " << size << endl;
 
+    cout << "Generating array A...\n";
     vector<vector<double>> arrayA(size, vector<double>(size, 0.0));
     arrayA = random(size, minValue, maxValue);
-    cout << "Array A:\n";
-    display(arrayA);
+    cout << "Array A generated\n\n";
 
+    cout << "Generating array B...\n";
     vector<vector<double>> arrayB(size, vector<double>(size, 0.0));
     arrayB = random(size, minValue, maxValue);
-    cout << "Array B:\n";
-    display(arrayB);
+    cout << "Array B generated\n\n";
 
-    vector<vector<double>> arrayC(size, vector<double>(size, 0.0));
-    arrayC = seqentialCalculate(arrayA, arrayB);
-    display(arrayC);
+    int count = 0;
+    cout << "Enter tests count:\n";
+    cin >> count;
+    cout << "Tests count: " << count << endl;
+
+    vector<double> seqentionalTimes(count, 0.0);
+    vector<vector<double>> times(countVariants, vector<double>(count, 0.0));
+
+
+    for (int i = 0; i < count; i++)
+    {
+        cout << "#" << i << " ";
+        seqentionalTimes[i] = seqentialTest(arrayA, arrayB);
+    }
+
+    times[0] = seqentionalTimes;
+    // TODO Min, Max, Average
+
+    display(times);
 }
-
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
