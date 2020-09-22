@@ -15,6 +15,7 @@ T test(vector<vector<T>> arrayA, vector<vector<T>> arrayB, TestTypes type) {
 
     switch (type)
     {
+    case PARALLEL_COLUMNS: arrayC = parallelColumnCalculate(arrayA, arrayB); break;
     case PARALLEL_ROW: arrayC = parallelRowCalculate(arrayA, arrayB); break;
     case SEQENTIAL: arrayC = seqentialCalculate(arrayA, arrayB); break;
     default: break;

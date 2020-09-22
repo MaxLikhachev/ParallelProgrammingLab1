@@ -51,15 +51,15 @@ int main()
 
     vector<vector<double>> times(SEQENTIAL + 1, vector<double>(count, 0.0));
 
-    vector<TestTypes> types(SEQENTIAL + 1, SEQENTIAL);
-    types = { SEQENTIAL, PARALLEL_ROW};
+    vector<TestTypes> types(SEQENTIAL + 1);
+    types = { SEQENTIAL, PARALLEL_ROW, PARALLEL_COLUMNS};
 
     for (int i = 0; i < types.size(); i++)
     {
         cout << getTestType(i) << " testing...\n";
         for (int j = 0; j < count; j++)
             times[i][j] = test(arrayA, arrayB, types[i]);
-        
+        cout << getTestType(i) << " tested\n\n";
     }
     analyse(times);
 }

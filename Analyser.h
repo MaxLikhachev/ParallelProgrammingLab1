@@ -20,11 +20,11 @@ void analyse(vector<vector<T>> array) {
 		cout << " Min: " << *minmax.first;
 		cout << " Max: " << *minmax.second;
 		T average = accumulate(array[i].begin(), array[i].end(), 0.0 / array[i].size());
-		cout << " Avg: " << average << endl << endl;
+		cout << " Avg: " << average << endl;
 		averages[i] = average;
 	}
 
-	cout << "Conclusion:\n";
+	cout << "\nConclusion:\n";
 	cout << "Best method: " << getTestType(min_element(averages.begin(), averages.end()) - averages.begin()) << " (" << *min_element(averages.begin(), averages.end()) << ")\n";
 	cout << "Worst method: " << getTestType(max_element(averages.begin(), averages.end()) - averages.begin()) << " (" << *max_element(averages.begin(), averages.end()) << ")\n";
 }
