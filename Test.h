@@ -2,18 +2,30 @@
 #include <iostream>
 #include <vector>
 #include <omp.h>
+
 #include "Random.h"
-#include "SeqentialCalculator.h" 
+#include "Calculator.h" 
+#include "TestTypes.h"
 
 template <typename T>
-T seqentialTest(vector<vector<T>> arrayA, vector<vector<T>> arrayB) {
-    cout << "Seqentional test: ";
+T test(vector<vector<T>> arrayA, vector<vector<T>> arrayB, TestTypes type) {
     int size = arrayA.size();
     vector<vector<T>>arrayC(size, vector<T>(size, 0.0));
     double start = omp_get_wtime();
-    arrayC = seqentialCalculate(arrayA, arrayB);
+
+    switch (type)
+    {
+    case PARALLEL_ROW: arrayC = parallelRowCalculate(arrayA, arrayB); break;
+    case SEQENTIAL: arrayC = seqentialCalculate(arrayA, arrayB); break;
+    default: break;
+
+    }
+    
+
+
     double end = omp_get_wtime(), time = end - start;
-    cout << "Average deviation: " << averageDeviationCalculate(arrayA, arrayB, arrayC) << " Time: " << time << endl;
+    if (averageDeviationCalculate(arrayA, arrayB, arrayC) != 0.0)
+        cout << "ERROR: arrayC not correct";
     return time;
 }
 

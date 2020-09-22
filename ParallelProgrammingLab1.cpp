@@ -18,20 +18,21 @@
 #include <omp.h>
 
 #include "Display.h"
-#include "Test.h" 
+#include "Test.h"
+#include "Analyser.h" 
+#include "TestTypes.h"
 
 using namespace std;
 
 const double minValue = 0.0;
 const double maxValue = 360.0;
-const int countVariants = 7;
 
 int main()
 {
     int size = 0;
     cout << "Enter arrays size:\n";
     cin >> size;
-    cout << "Arrays size: " << size << endl;
+    cout << "Arrays size: " << size << endl << endl;
 
     cout << "Generating array A...\n";
     vector<vector<double>> arrayA(size, vector<double>(size, 0.0));
@@ -46,20 +47,19 @@ int main()
     int count = 0;
     cout << "Enter tests count:\n";
     cin >> count;
-    cout << "Tests count: " << count << endl;
+    cout << "Tests count: " << count << endl << endl;
 
-    vector<double> seqentionalTimes(count, 0.0);
-    vector<vector<double>> times(countVariants, vector<double>(count, 0.0));
+    vector<vector<double>> times(SEQENTIAL + 1, vector<double>(count, 0.0));
 
+    vector<TestTypes> types(SEQENTIAL + 1, SEQENTIAL);
+    types = { SEQENTIAL, PARALLEL_ROW};
 
-    for (int i = 0; i < count; i++)
+    for (int i = 0; i < types.size(); i++)
     {
-        cout << "#" << i << " ";
-        seqentionalTimes[i] = seqentialTest(arrayA, arrayB);
+        cout << getTestType(i) << " testing...\n";
+        for (int j = 0; j < count; j++)
+            times[i][j] = test(arrayA, arrayB, types[i]);
+        
     }
-
-    times[0] = seqentionalTimes;
-    // TODO Min, Max, Average
-
-    display(times);
+    analyse(times);
 }
