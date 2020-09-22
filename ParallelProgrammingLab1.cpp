@@ -18,7 +18,7 @@
 #include <omp.h>
 #include "Random.h"
 #include "Display.h"
-#include "SeqentialCalculator.h"
+#include "SeqentialCalculator.h" 
 
 using namespace std;
 
