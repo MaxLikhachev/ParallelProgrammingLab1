@@ -23,11 +23,3 @@ vector<vector<T>> random(int size, T min, T max)
 
 	return array;
 }
-
-
-int random(int min, int max)
-{
-	minstd_rand rand(clock());
-	uniform_int_distribution<> distribution(min, max);
-	return distribution(rand);
-}
