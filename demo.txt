@@ -1,0 +1,79 @@
+Enter arrays size:
+500
+Arrays size: 500
+
+Generating array A...
+Array A generated
+
+Generating array B...
+Array B generated
+
+Enter tests count:
+10
+Tests count: 10
+
+Seqential method testing...
+Seqential method tested
+
+Parallel by rows method testing...
+Parallel by rows method tested
+
+Parallel by columns method testing...
+Parallel by columns method tested
+
+Parallel by blocks method testing...
+Parallel by blocks method tested
+
+
+Analysys:
+Seqential method test: Min: 73.2304 Max: 74.3228 Avg: 14.7553
+Parallel by rows method test: Min: 72.8436 Max: 73.9568 Avg: 14.68
+Parallel by columns method test: Min: 72.7472 Max: 73.2596 Avg: 14.6007
+Parallel by blocks method test: Min: 72.686 Max: 73.7817 Avg: 14.6468
+
+Conclusion:
+Best method: Parallel by columns method (14.6007)
+Worst method: Seqential method (14.7553)
+
+Parallel by shedule static method testing...
+Parallel by shedule static method tested
+
+Parallel by shedule dynamic method testing...
+Parallel by shedule dynamic method tested
+
+Parallel by shedule guided method testing...
+Parallel by shedule guided method tested
+
+
+Analysys:
+Parallel by shedule static method test: Min: 72.8801 Max: 73.3591 Avg: 14.6239
+Parallel by shedule dynamic method test: Min: 72.9129 Max: 74.466 Avg: 14.7379
+Parallel by shedule guided method test: Min: 73.0188 Max: 74.4773 Avg: 14.7496
+
+Conclusion:
+Best method: Parallel by shedule static method (14.6239)
+Worst method: Parallel by shedule guided method (14.7496)
+
+Parallel by shedule dynamic(2) method testing...
+Parallel by shedule dynamic(2) method tested
+
+Parallel by shedule dynamic(4) method testing...
+Parallel by shedule dynamic(4) method tested
+
+Parallel by shedule dynamic(6) method testing...
+Parallel by shedule dynamic(6) method tested
+
+
+Analysys:
+Parallel by shedule dynamic(2) method test: Min: 73.251 Max: 74.0751 Avg: 14.7326
+Parallel by shedule dynamic(4) method test: Min: 72.7583 Max: 73.6397 Avg: 14.6398
+Parallel by shedule dynamic(6) method test: Min: 72.9639 Max: 73.9064 Avg: 14.687
+
+Conclusion:
+Best method: Parallel by shedule dynamic(4) method (14.6398)
+Worst method: Parallel by shedule dynamic(2) method (14.7326)
+
+
+C:\Users\likhachev_myu\Downloads\ParallelProgrammingLab1-master\x64\Debug\ParallelProgrammingLab1.exe (процесс 7368) завершил работу с кодом 0.
+Чтобы автоматически закрывать консоль при остановке отладки, включите параметр "Сервис" ->"Параметры" ->"Отладка" -> "Автоматически закрыть консоль при остановке отладки".
+Нажмите любую клавишу, чтобы закрыть это окно…
