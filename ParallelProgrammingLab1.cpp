@@ -49,17 +49,28 @@ int main()
     cin >> count;
     cout << "Tests count: " << count << endl << endl;
 
-    vector<vector<double>> times(SEQENTIAL + 1, vector<double>(count, 0.0));
+    vector<TestTypes> typesBeforeAnalyse = { SEQENTIAL, PARALLEL_ROWS, PARALLEL_COLUMNS, PARALLEL_BLOCKS };
+    vector<vector<double>> timesBeforeAnalyse(typesBeforeAnalyse.size(), vector<double>(count, 0.0));
 
-    vector<TestTypes> types(SEQENTIAL + 1);
-    types = { SEQENTIAL, PARALLEL_ROW, PARALLEL_COLUMNS};
-
-    for (int i = 0; i < types.size(); i++)
+    for (int i = 0; i < typesBeforeAnalyse.size(); i++)
     {
-        cout << getTestType(i) << " testing...\n";
+        cout << getTestType(typesBeforeAnalyse[i]) << " testing...\n";
         for (int j = 0; j < count; j++)
-            times[i][j] = test(arrayA, arrayB, types[i]);
-        cout << getTestType(i) << " tested\n\n";
+            timesBeforeAnalyse[i][j] = test(arrayA, arrayB, typesBeforeAnalyse[i]);
+        cout << getTestType(typesBeforeAnalyse[i]) << " tested\n\n";
     }
-    analyse(times);
+    analyse(timesBeforeAnalyse, typesBeforeAnalyse);
+
+    vector<TestTypes> typesAfterAnalyse = { PARALLEL_SCHEDULE_STATIC, PARALLEL_SCHEDULE_DYNAMIC, PARALLEL_SCHEDULE_RUNTIME };
+    vector<vector<double>> timesAfterAnalyse(typesAfterAnalyse.size(), vector<double>(count, 0.0));
+
+    for (int i = 0; i < typesAfterAnalyse.size(); i++)
+    {
+        cout << getTestType(typesAfterAnalyse[i]) << " testing...\n";
+        for (int j = 0; j < count; j++)
+            timesAfterAnalyse[i][j] = test(arrayA, arrayB, typesAfterAnalyse[i]);
+        cout << getTestType(typesAfterAnalyse[i]) << " tested\n\n";
+    }
+
+    analyse(timesAfterAnalyse, typesAfterAnalyse);
 }
