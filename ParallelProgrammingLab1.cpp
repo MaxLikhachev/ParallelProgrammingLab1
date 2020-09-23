@@ -48,12 +48,12 @@ int main()
     cin >> count;
     cout << "Tests count: " << count << endl << endl;
 
-    vector<TestTypes> typesFirstAnalyse = { TestTypes::SEQENTIAL, TestTypes::PARALLEL_ROWS, TestTypes::PARALLEL_COLUMNS, TestTypes::PARALLEL_BLOCKS };
-    tests(arrayA, arrayB, typesFirstAnalyse, count);
+    vector<TestTypes> types = { TestTypes::SEQENTIAL, TestTypes::PARALLEL_ROWS, TestTypes::PARALLEL_COLUMNS, TestTypes::PARALLEL_BLOCKS };
+    tests(arrayA, arrayB, types, count);
 
-    vector<TestTypes> typesSecondAnalyse = { TestTypes::PARALLEL_SCHEDULE_STATIC, TestTypes::PARALLEL_SCHEDULE_DYNAMIC, TestTypes::PARALLEL_SCHEDULE_GUIDED };
-    tests(arrayA, arrayB, typesSecondAnalyse, count);
+    types = { TestTypes::PARALLEL_SCHEDULE_STATIC, TestTypes::PARALLEL_SCHEDULE_DYNAMIC, TestTypes::PARALLEL_SCHEDULE_GUIDED };
+    tests(arrayA, arrayB, types, count);
     
-    vector<TestTypes> typesThirdAnalyse = { TestTypes::PARALLEL_SCHEDULE_DYNAMIC_2, TestTypes::PARALLEL_SCHEDULE_DYNAMIC_4, TestTypes::PARALLEL_SCHEDULE_DYNAMIC_6 };
-    tests(arrayA, arrayB, typesThirdAnalyse, count);
+    types = { TestTypes::PARALLEL_SCHEDULE_DYNAMIC_2, TestTypes::PARALLEL_SCHEDULE_DYNAMIC_4, TestTypes::PARALLEL_SCHEDULE_DYNAMIC_6 };
+    tests(arrayA, arrayB, types, count);
 }

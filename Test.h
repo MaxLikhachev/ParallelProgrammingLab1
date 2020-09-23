@@ -31,7 +31,7 @@ double test(vector<vector<T>> arrayA, vector<vector<T>> arrayB, TestTypes type) 
     
     double end = omp_get_wtime(), time = (end - start) * 1000;
     
-    cout << "Avg deviate: " << averageDeviationCalculate(arrayA, arrayB, arrayC) << endl;
+    // cout << "Avg deviate: " << averageDeviationCalculate(arrayA, arrayB, arrayC) << endl;
     if (averageDeviationCalculate(arrayA, arrayB, arrayC) != 0.0)
          cout << "ERROR: arrayC not correct";
 
@@ -47,10 +47,8 @@ void tests(vector<vector<T>> arrayA, vector<vector<T>> arrayB, vector<TestTypes>
     {
         cout << getTestType(types[i]) << " testing...\n";
         for (int j = 0; j < count; j++)
-        {
-            cout << "#" << j << ": ";
             times[i][j] = test(arrayA, arrayB, types[i]);
-        }
+        
         cout << getTestType(types[i]) << " tested\n\n";
     }
 
