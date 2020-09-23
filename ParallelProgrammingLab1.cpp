@@ -19,7 +19,6 @@
 
 #include "Display.h"
 #include "Test.h"
-#include "Analyser.h" 
 #include "TestTypes.h"
 
 using namespace std;
@@ -49,28 +48,12 @@ int main()
     cin >> count;
     cout << "Tests count: " << count << endl << endl;
 
-    vector<TestTypes> typesBeforeAnalyse = { SEQENTIAL, PARALLEL_ROWS, PARALLEL_COLUMNS, PARALLEL_BLOCKS };
-    vector<vector<double>> timesBeforeAnalyse(typesBeforeAnalyse.size(), vector<double>(count, 0.0));
+    vector<TestTypes> typesFirstAnalyse = { TestTypes::SEQENTIAL, TestTypes::PARALLEL_ROWS, TestTypes::PARALLEL_COLUMNS, TestTypes::PARALLEL_BLOCKS };
+    tests(arrayA, arrayB, typesFirstAnalyse, count);
 
-    for (int i = 0; i < typesBeforeAnalyse.size(); i++)
-    {
-        cout << getTestType(typesBeforeAnalyse[i]) << " testing...\n";
-        for (int j = 0; j < count; j++)
-            timesBeforeAnalyse[i][j] = test(arrayA, arrayB, typesBeforeAnalyse[i]);
-        cout << getTestType(typesBeforeAnalyse[i]) << " tested\n\n";
-    }
-    analyse(timesBeforeAnalyse, typesBeforeAnalyse);
-
-    vector<TestTypes> typesAfterAnalyse = { PARALLEL_SCHEDULE_STATIC, PARALLEL_SCHEDULE_DYNAMIC, PARALLEL_SCHEDULE_RUNTIME };
-    vector<vector<double>> timesAfterAnalyse(typesAfterAnalyse.size(), vector<double>(count, 0.0));
-
-    for (int i = 0; i < typesAfterAnalyse.size(); i++)
-    {
-        cout << getTestType(typesAfterAnalyse[i]) << " testing...\n";
-        for (int j = 0; j < count; j++)
-            timesAfterAnalyse[i][j] = test(arrayA, arrayB, typesAfterAnalyse[i]);
-        cout << getTestType(typesAfterAnalyse[i]) << " tested\n\n";
-    }
-
-    analyse(timesAfterAnalyse, typesAfterAnalyse);
+    vector<TestTypes> typesSecondAnalyse = { TestTypes::PARALLEL_SCHEDULE_STATIC, TestTypes::PARALLEL_SCHEDULE_DYNAMIC, TestTypes::PARALLEL_SCHEDULE_GUIDED };
+    tests(arrayA, arrayB, typesSecondAnalyse, count);
+    
+    vector<TestTypes> typesThirdAnalyse = { TestTypes::PARALLEL_SCHEDULE_DYNAMIC_2, TestTypes::PARALLEL_SCHEDULE_DYNAMIC_4, TestTypes::PARALLEL_SCHEDULE_DYNAMIC_6 };
+    tests(arrayA, arrayB, typesThirdAnalyse, count);
 }

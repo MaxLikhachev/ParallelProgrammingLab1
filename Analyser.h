@@ -24,6 +24,6 @@ void analyse(vector<vector<T>> array, vector<TestTypes> types) {
 	}
 
 	cout << "\nConclusion:\n";
-	cout << "Best method: " << getTestTypeByType(types[min_element(averages.begin(), averages.end()) - averages.begin()]) << " (" << *min_element(averages.begin(), averages.end()) << ")\n";
-	cout << "Worst method: " << getTestTypeByType(types[max_element(averages.begin(), averages.end()) - averages.begin()]) << " (" << *max_element(averages.begin(), averages.end()) << ")\n\n";
+	cout << "Best method: " << getTestType(types[min_element(averages.begin(), averages.end()) - averages.begin()]) << " (" << *min_element(averages.begin(), averages.end()) << ")\n";
+	cout << "Worst method: " << getTestType(types[max_element(averages.begin(), averages.end()) - averages.begin()]) << " (" << *max_element(averages.begin(), averages.end()) << ")\n\n";
 }
